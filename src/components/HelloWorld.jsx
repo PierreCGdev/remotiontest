@@ -5,7 +5,7 @@ function HelloWorld() {
   // Un composant doit toujours retourner du JSX
   // C'est le rendu qui va être injecté dans le DOM
   // Bien que l'on utilise la balise HTML <p> ici, en réalité on écrit du JSX
-  return <p>Hello World</p>;
+  return <p>test pour voir 321</p>;
 }
 
 // On exporte notre composant du fichier
