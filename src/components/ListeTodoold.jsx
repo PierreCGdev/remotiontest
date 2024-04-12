@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import AddButton from './AddButton.jsx';
-import AddItemlist from './AddItemlist.jsx';
 
 function ListeTodo() {
 
@@ -23,17 +21,17 @@ function ListeTodo() {
   }
 
   const listeUpdate = updated.map(item => 
-    AddItemlist(item,"supprimer",() => cleanTodo(item)));
-    
+    <li key={item}><span>{item}</span> <button onClick={() => cleanTodo(item)}>supprimer</button></li>
+    );
+
   return (
     <div>
     <input 
         onChange={inputTodo}
         value={message} 
         />
-
-    {AddButton("valider",clickClear)}
-
+        
+    <button onClick={clickClear}>Valider</button>
         <ul>{listeUpdate}</ul>
   </div>
   );
