@@ -23,7 +23,7 @@ const CreateList = (props) => {
         };
 
     const listeUpdate = updated.map((item) => 
-            <AddItemlist key={item.toString()} itemName={item} arrayName={updated} arrayFn={setUpdated} 
+            <AddItemlist  itemName={item} arrayName={updated} arrayFn={setUpdated} 
             btnAction={() => cleanTodo(item)} btnAction2={() => validChange(item)}
             />);
 
