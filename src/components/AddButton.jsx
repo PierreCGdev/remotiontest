@@ -1,8 +1,8 @@
 
-const AddButton = (btnName,btnAction) => {
+const AddButton = (props) => {
   return (
-    <button onClick={btnAction}>
-      {btnName}
+    <button onClick={props.btnAction}>
+      {props.btnName}
     </button>
   );
 };

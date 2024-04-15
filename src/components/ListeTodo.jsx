@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddButton from './AddButton.jsx';
-import AddItemlist from './AddItemlist.jsx';
+import AddInput from './AddInput.jsx';
+import CreateList from './CreateList.jsx';
 
 function ListeTodo() {
 
@@ -15,28 +16,14 @@ function ListeTodo() {
     updated.push(message);
     setMessage("");
   };
-
-  const cleanTodo = (value) => {
-    setUpdated(oldValues => {
-      return oldValues.filter(updated => updated !== value)
-    })
-  }
-
-  const listeUpdate = updated.map(item => 
-    AddItemlist(item,"supprimer",() => cleanTodo(item)));
     
   return (
     <div>
-    <input 
-        onChange={inputTodo}
-        value={message} 
-        />
-
-    {AddButton("valider",clickClear)}
-
-        <ul>{listeUpdate}</ul>
-  </div>
-  );
+    <AddInput inputAction={inputTodo} InputMessage={message}/>
+    <AddButton btnAction={clickClear} btnName="valider"/>
+    <CreateList arrayName={updated} arrayFn = {setUpdated}/>
+    </div>
+    );
 
 }
 
