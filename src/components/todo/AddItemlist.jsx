@@ -2,8 +2,8 @@ import { useState } from 'react';
 import AddButton from './AddButton.jsx';
 import AddInput from './AddInput.jsx';
 
-const AddItemlist = (props) => {
-  const [message, setMessage] = useState("");
+function AddItemlist(props) {
+  const [message, setMessage] = useState(props.item);
   
   const inputTodo = (event) => {
     setMessage(event.target.value);
@@ -11,10 +11,10 @@ const AddItemlist = (props) => {
 
     return (
       <li>
-      <span>{props.itemName}</span>
+      <span>{props.item}</span>
       <AddInput inputAction={inputTodo} InputMessage={message}/>
-      <AddButton btnAction={props.btnAction2} btnName="valider la modification"/>
-      <AddButton btnAction={props.btnAction} btnName="supprimer"/> </li>
+      <AddButton btnAction={() => props.btnActionmodif(props.item, message)} btnName={'valider la modification'}/>
+      <AddButton btnAction={() => props.btnActionremove(props.item)} btnName={'supprimer'}/> </li>
     );
   };
   

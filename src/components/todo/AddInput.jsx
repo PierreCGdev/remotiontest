@@ -1,4 +1,4 @@
-const AddInput = (props) => {
+function AddInput(props) {
     return (
         <input 
         onChange={props.inputAction}

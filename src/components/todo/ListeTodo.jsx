@@ -13,15 +13,15 @@ function ListeTodo() {
   };
 
   const clickClear = () => {
-    updated.push(message);
+    setUpdated(prevItems => prevItems.concat(message));
     setMessage("");
   };
     
   return (
     <div>
     <AddInput inputAction={inputTodo} InputMessage={message}/>
-    <AddButton btnAction={clickClear} btnName="valider"/>
-    <CreateList arrayName={updated} arrayFn = {setUpdated}/>
+    <AddButton btnAction={clickClear} btnName={'valider'}/>
+    <CreateList arrayName={updated} arrayFn = {setUpdated} />
     </div>
     );
 

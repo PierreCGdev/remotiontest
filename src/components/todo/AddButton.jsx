@@ -1,5 +1,5 @@
 
-const AddButton = (props) => {
+function AddButton(props) {
   return (
     <button onClick={props.btnAction}>
       {props.btnName}
