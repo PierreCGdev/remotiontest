@@ -1,4 +1,13 @@
-function addRadial(props) {
+type PropsType = {
+  proposition:string;
+  onChange:React.ChangeEventHandler<HTMLInputElement>;
+  reponse:string;
+}
+
+
+function addRadial(props:PropsType) {
+
+
 
     return  (
     <div key={props.reponse}>

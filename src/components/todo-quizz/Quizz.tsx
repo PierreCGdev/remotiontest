@@ -6,15 +6,14 @@ import ListRadial from './ListRadial';
 
 function Quizz() {
     const [score, setScore] = useState(0);
-    const [reponse, setReponse] = useState();
+    const [reponse, setReponse] = useState('');
     const [current, setCurrent] = useState(0);
 
-       const radialChoice = (event) => {
+       const radialChoice = (event:React.ChangeEvent<HTMLInputElement>) => {
         setReponse(event.target.value);  
       };
 
-      const buttonNext = (event) => {
-        setReponse(event.target.value)
+      const buttonNext = () => {
         checkReponse();
         setCurrent(current +1);
       };
@@ -42,7 +41,7 @@ function Quizz() {
         }
         return <Screen 
         TitleH3={data[current].question} 
-        content={<ListRadial current={[current]} onChange={radialChoice}/>} 
+        content={<ListRadial current={current} onChange={radialChoice}/>} 
         onClick={buttonNext} 
         label={'Suivant'}
         />;

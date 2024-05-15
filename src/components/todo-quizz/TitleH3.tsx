@@ -1,4 +1,8 @@
-function TitleH3(props) {
+type PropsType = {
+  TitleH3:string;
+}
+
+function TitleH3(props:PropsType) {
 
     return  (
         <h3>{props.TitleH3} </h3> 
