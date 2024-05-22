@@ -30,9 +30,11 @@ loadDatabase();
 // ajouter un utilisateur
 // si l'utilisateur existe déjà (par son id par ex.)
 // il ne faut pas l'ajouter
+// retourne true si c'est un succés, false si il y a une erreur
 function add(user) {}
 
 // récupérer l'ensemble des utilisateurs
+// retourne l'ensemble des utilisateurs
 function findAll() {}
 
 // trouve un utilisateur par son id
@@ -54,4 +56,5 @@ function updateUserTeam(user, team) {}
 
 // trouve un utilisateur par son id
 // supprimer l'utilisateur
+// retourne true si c'est un succés ou false en cas d'échec
 function removeById(id) {}
