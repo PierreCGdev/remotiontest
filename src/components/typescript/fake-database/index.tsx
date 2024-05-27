@@ -42,13 +42,13 @@ function loadDatabase() {
 
 
 loadDatabase();
-//add(userTest)
-//findAll();
-//findUserBydId(1);
-//findUsersByTeam(1);
-//userExist("Martin");
-//updateUserTeam("Martin", 2)
-removeById(1)
+// add(userTest)
+// findAll();
+// findUserBydId(1);
+// findUsersByTeam(1);
+// userExist("Pierre");
+
+// removeById(1)
 
 // Pour chaque function
 // -> écrire la logique en se basant sur les commentaires
@@ -72,19 +72,17 @@ removeById(1)
 // retourne true si c'est un succés, false si il y a une erreur
 
 
-function add(user:MemberData) {
-  if(data.findIndex((object) => object.id === user.id ) === - 1)
-    {data.push(user)
-      console.log("ok")
+function add(user:MemberData):boolean {
+  if(data.findIndex((object) => object.id === user.id ) === - 1){
+    data.push(user)
       return true
     } else {
-      console.log("nop")
       return false
     }
 }
 // récupérer l'ensemble des utilisateurs
 // retourne l'ensemble des utilisateurs
-function findAll() {
+function findAll():string[] {
   const listUser:string[] = [];
   data.map((user) =>{
     listUser.push(user.name)
@@ -94,20 +92,24 @@ function findAll() {
   return listUser
 }
 
+
 // trouve un utilisateur par son id
-// retourne l'utilisateur en question
-function findUserBydId(id:number) {
+// retourne l'utilisateur en question   CORRECTIOn
+function findUserBydId(id:number):string{
+  let user:string = "";
   data.map((found) => {
-    if(id === found.id) 
-      console.log("findUserBydId = " + found.name);
-    return found.name
-  }
-)
+    if(found.id === id) {
+      user = found.name
+      console.log(found.name);
+      }
+    }
+  )
+  return user
 }
 
 // trouve les utilisateurs qui correspondent à un id de team
 // retourne les utilisateurs
-function findUsersByTeam(teamId:number) {
+function findUsersByTeam(teamId:number):string[] {
   const listUser:string[] = [];
   data.map((found) => {
     if(teamId === found.team.id) 
@@ -118,28 +120,33 @@ function findUsersByTeam(teamId:number) {
   return listUser
 }
 
+
+
 // trouve un utilisateur
 // retourner true si l'utilisateur existe, sinon false
-function userExist(user:string) {
-  data.map((found) => {
-    if(user === found.name) {
-      console.log("findUserBydId = " + true)}
-      return true
-    } 
-  )
+function userExist(user:string):boolean{
+return data.some(found => found.name === user)
 }
+
 
 // trouve un utilisateur
 // change sa team
 // retourne l'utilisateur avec sa nouvelle team
-function updateUserTeam(user:string, team:number) {
+
+updateUserTeam("Martin", 2)
+
+function updateUserTeam(user:string, team:number):[string,number] {
+  let userName:string = "";
+  let userTeam:number = 0;
     data.map((found) => {
       if(user === found.name) {
         found.team.id = team;
-        console.log(found.name + " de l'équipe " + found.team.id)
+        userName = found.name;
+        userTeam = found.team.id;
       };
     } 
   )
+  return [userName,userTeam]
 }
 
 // trouve un utilisateur par son id
@@ -148,12 +155,11 @@ function updateUserTeam(user:string, team:number) {
 
 
 
-function removeById(id:number) {
+function removeById(id:number):boolean {
 if(data.findIndex((found) => found.id === id )  !== - 1){
   const index = data.findIndex((found) => found.id === id);
   data.splice(index, 1);
   return true
-
   }else{
   return false
   }
