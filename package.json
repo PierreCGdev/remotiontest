@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "ts:fake-database": "tsc src/components/typescript/fake-database/*.ts --noEmit --skipLibCheck"
+    "ts:fake-database": "tsc  --noEmit --skipLibCheck"
   },
   "dependencies": {
     "react": "^18.2.0",
