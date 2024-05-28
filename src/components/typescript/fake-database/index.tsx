@@ -8,7 +8,7 @@ import database  from "./database.js";
 
 type TeamData = {
   id:number;
-  name:string;
+  name: "crea" | "tech";
 }
 
 
@@ -25,7 +25,7 @@ const userTest:MemberData = {
   email: "top",
   team: {
     id: 1,
-    name: "surper",
+    name: "crea",
   }
 }
 
@@ -82,25 +82,25 @@ function add(user:MemberData):boolean {
 }
 // récupérer l'ensemble des utilisateurs
 // retourne l'ensemble des utilisateurs
-function findAll():string[] {
-  const listUser:string[] = [];
+function findAll():MemberData[] {
+  const listUser:MemberData[] = [];
   data.map((user) =>{
-    listUser.push(user.name)
+    listUser.push(user)
     }
   )
-  console.log("findAll = " + listUser)
+  console.log(listUser)
   return listUser
 }
 
 
 // trouve un utilisateur par son id
-// retourne l'utilisateur en question   CORRECTIOn
-function findUserBydId(id:number):string{
-  let user:string = "";
+// retourne l'utilisateur en question   
+function findUserBydId(id:number):MemberData | undefined{
+  let user;
   data.map((found) => {
     if(found.id === id) {
-      user = found.name
-      console.log(found.name);
+      user = found;
+      console.log(found);
       }
     }
   )
@@ -109,14 +109,14 @@ function findUserBydId(id:number):string{
 
 // trouve les utilisateurs qui correspondent à un id de team
 // retourne les utilisateurs
-function findUsersByTeam(teamId:number):string[] {
-  const listUser:string[] = [];
+function findUsersByTeam(teamId:number):MemberData[] {
+  const listUser:MemberData[] = [];
   data.map((found) => {
     if(teamId === found.team.id) 
-      listUser.push(found.name)
+      listUser.push(found)
     }
   )
-  console.log("findUsersByTeam " + teamId + " = " +  listUser);
+  console.log(listUser);
   return listUser
 }
 
@@ -133,20 +133,29 @@ return data.some(found => found.name === user)
 // change sa team
 // retourne l'utilisateur avec sa nouvelle team
 
-updateUserTeam("Martin", 2)
+updateUserTeam("Martin", {
+  id: 2,
+  name: "tech",
+  }
+)
 
-function updateUserTeam(user:string, team:number):[string,number] {
-  let userName:string = "";
-  let userTeam:number = 0;
-    data.map((found) => {
-      if(user === found.name) {
-        found.team.id = team;
-        userName = found.name;
-        userTeam = found.team.id;
-      };
-    } 
+function updateUserTeam(user:string, team:TeamData): MemberData  {
+  let newUser:MemberData;
+  data.map((found:MemberData) => {
+    
+    if(user === found.name) {
+      found.team = team;
+      newUser = found;
+      
+    }
+    
+   
+    return newUser
+    
+   } 
+   
   )
-  return [userName,userTeam]
+  
 }
 
 // trouve un utilisateur par son id
