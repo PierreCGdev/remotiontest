@@ -4,8 +4,8 @@ import AddInput from './AddInput';
 
 type PropsType = {
   item:string;
-  btnActionmodif:React.ChangeEventHandler<HTMLInputElement>;
-  btnActionremove:React.ChangeEventHandler<HTMLInputElement>;
+  btnActionmodif:(item: string, message:string) => void;
+  btnActionremove:(value: string) => string[] | undefined;
   }
 
 
