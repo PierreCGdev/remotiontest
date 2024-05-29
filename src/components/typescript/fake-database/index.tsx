@@ -139,23 +139,18 @@ updateUserTeam("Martin", {
   }
 )
 
-function updateUserTeam(user:string, team:TeamData): MemberData  {
-  let newUser:MemberData;
+function updateUserTeam(user:string, team:TeamData): MemberData | undefined {
+  let newUser;
   data.map((found:MemberData) => {
     
     if(user === found.name) {
       found.team = team;
       newUser = found;
-      
     }
-    
-   
-    return newUser
-    
    } 
-   
   )
-  
+  console.log(newUser)
+  return newUser
 }
 
 // trouve un utilisateur par son id

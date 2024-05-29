@@ -1,4 +1,10 @@
-function AddInput(props) {
+type PropsType{
+inputAction:React.ChangeEventHandler<HTMLInputElement>;
+InputMessage:string;
+}
+
+
+function AddInput(props:PropsType) {
     return (
         <input 
         onChange={props.inputAction}

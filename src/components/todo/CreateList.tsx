@@ -1,4 +1,4 @@
-import AddItemlist from './AddItemlist.jsx';
+import AddItemlist from './AddItemlist';
 
 
 function CreateList(props) { 

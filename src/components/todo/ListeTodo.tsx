@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import AddButton from './AddButton.jsx';
-import AddInput from './AddInput.jsx';
-import CreateList from './CreateList.jsx';
+import AddButton from './AddButton';
+import AddInput from './AddInput';
+import CreateList from './CreateList';
 
 function ListeTodo() {
 
   const [message, setMessage] = useState();
   const [updated, setUpdated] = useState([]);
 
-  const inputTodo = (event) => {
+  const inputTodo = (event:React.ChangeEvent<HTMLButtonElement>) => {
     setMessage(event.target.value);
   };
 

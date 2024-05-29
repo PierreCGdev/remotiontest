@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import AddButton from './AddButton.jsx';
-import AddInput from './AddInput.jsx';
+import AddButton from './AddButton';
+import AddInput from './AddInput';
 
-function AddItemlist(props) {
+type PropsType{
+  item:string;
+  btnActionmodif:React.ChangeEventHandler<HTMLInputElement>;
+  btnActionremove:React.ChangeEventHandler<HTMLInputElement>;
+  }
+
+
+
+function AddItemlist(props:PropsType) {
   const [message, setMessage] = useState(props.item);
   
   const inputTodo = (event) => {
