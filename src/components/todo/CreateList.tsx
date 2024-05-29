@@ -1,20 +1,27 @@
 import AddItemlist from './AddItemlist';
 
+type PropsType = {
+  arrayName:string[];
+  arrayFn:React.Dispatch<React.SetStateAction<string[]>>;
+  }
 
-function CreateList(props) { 
 
-    const cleanTodo = (value) => {
+function CreateList(props:PropsType) { 
+
+    const cleanTodo = (value:string):string[]  | undefined  => {
+        let oldValues
         props.arrayFn(oldValues => {
           return oldValues.filter(updated => updated !== value)
         })
+        return oldValues
       };
     
     
-    const validChange = (item, message) => {
+    const validChange = (item:string, message:string) => {
         const itemKey = props.arrayName.indexOf(item); 
         // item ici est un tableau, comment il peut être un index dans un autre tableau ?
         if (itemKey > - 1) {
-          const newItems = props.arrayName.map((value, index) => {
+          const newItems = props.arrayName.map((value:string, index:number) => {
             // je pense que j'ai du mal à comprendre comment map fonctionne ici, la deuxième valeur de la fonction est toujours l'index ?
             if (index === itemKey) {
               return message;

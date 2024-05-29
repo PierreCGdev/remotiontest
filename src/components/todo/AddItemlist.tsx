@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AddButton from './AddButton';
 import AddInput from './AddInput';
 
-type PropsType{
+type PropsType = {
   item:string;
   btnActionmodif:React.ChangeEventHandler<HTMLInputElement>;
   btnActionremove:React.ChangeEventHandler<HTMLInputElement>;
@@ -11,9 +11,9 @@ type PropsType{
 
 
 function AddItemlist(props:PropsType) {
-  const [message, setMessage] = useState(props.item);
+  const [message, setMessage] = useState<string>(props.item);
   
-  const inputTodo = (event) => {
+  const inputTodo = (event:React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 

@@ -5,10 +5,10 @@ import CreateList from './CreateList';
 
 function ListeTodo() {
 
-  const [message, setMessage] = useState();
-  const [updated, setUpdated] = useState([]);
+  const [message, setMessage] = useState<string>("");
+  const [updated, setUpdated] = useState<string[]>([""]); // il fallait lui préciser le type d'array avec ""
 
-  const inputTodo = (event:React.ChangeEvent<HTMLButtonElement>) => {
+  const inputTodo = (event:React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 
@@ -19,9 +19,15 @@ function ListeTodo() {
     
   return (
     <div>
-    <AddInput inputAction={inputTodo} InputMessage={message}/>
-    <AddButton btnAction={clickClear} btnName={'valider'}/>
-    <CreateList arrayName={updated} arrayFn = {setUpdated} />
+    <AddInput 
+    inputAction={inputTodo} 
+    InputMessage={message}/>
+    <AddButton 
+    btnAction={clickClear} 
+    btnName={'valider'}/>
+    <CreateList 
+    arrayName={updated} 
+    arrayFn={setUpdated} />
     </div>
     );
 

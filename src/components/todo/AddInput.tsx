@@ -1,6 +1,6 @@
-type PropsType{
-inputAction:React.ChangeEventHandler<HTMLInputElement>;
+type PropsType = {
 InputMessage:string;
+inputAction:React.ChangeEventHandler<HTMLInputElement>;
 }
 
 
