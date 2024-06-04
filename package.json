@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "ts:fake-database": "tsc  --noEmit --skipLibCheck"
+    "ts:fake-database": "tsc  --noEmit --skipLibCheck",
+    "remotion:studio": "npx remotion studio src/remotion/index.ts",
+    "remotion:render": "npx remotion render src/remotion/index.ts Demo out.mp4"
   },
   "dependencies": {
+    "@remotion/cli": "4.0.165",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remotion": "4.0.165"
   },
   "devDependencies": {
     "@types/react": "18.3.2",
