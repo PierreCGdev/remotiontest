@@ -8,7 +8,6 @@ import {
   useVideoConfig,
   Easing,
   Sequence,
-
 } from "remotion";
 
 import {
@@ -18,7 +17,6 @@ import {
 } from "@remotion/animation-utils";
 
 import { measureText } from "@remotion/layout-utils";
-
 
 const Circle = () => {
   const frame = useCurrentFrame();
@@ -30,30 +28,29 @@ const Circle = () => {
     extrapolateLeft: "clamp",
   });
 
-
-
-  const positionXValue = interpolate(frame, [0, 6, 20], [50,  700, 0], { // plusieurs clés et value
+  const positionXValue = interpolate(frame, [0, 6, 20], [50, 700, 0], {
+    // plusieurs clés et value
     easing: Easing.bezier(0.17, 0.17, 0.66, 1),
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
-  const positionYValue = interpolate(frame, [0, 5, 10, 20], [0, -150,  600, 0], { // plusieurs clés et value
+  const positionYValue = interpolate(frame, [0, 5, 10, 20], [0, -150, 600, 0], {
+    // plusieurs clés et value
     easing: Easing.bezier(0.17, 0.17, 0.66, 1),
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
-   
-  const raduisCircle = 1600
+
+  const raduisCircle = 1600;
 
   return (
     <div
-      style={
-        {
+      style={{
         position: "absolute",
         left: "50%",
         top: "50%",
-        marginLeft: `-${raduisCircle/2}px`,
-        marginTop: `-${raduisCircle/2}px`,
+        marginLeft: `-${raduisCircle / 2}px`,
+        marginTop: `-${raduisCircle / 2}px`,
 
         transformOrigin: "center", // a regarder  https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin recherche css first
         width: `${raduisCircle}px`,
@@ -63,8 +60,7 @@ const Circle = () => {
         borderRadius: 1500,
         backgroundColor: "black",
       }}
-    >
-    </div>
+    ></div>
   );
 };
 
@@ -77,7 +73,7 @@ const Txt = () => {
     extrapolateLeft: "clamp",
   });
 
-  const translatePositionY = interpolate(frame, [15, 28,40], [0, -100, 0], {
+  const translatePositionY = interpolate(frame, [15, 28, 40], [0, -100, 0], {
     easing: Easing.bezier(0.17, 0.17, 0.66, 1),
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
@@ -86,15 +82,13 @@ const Txt = () => {
   const txtW = 500;
   const txtH = 200;
 
- 
-
   return (
     <div
       style={{
         position: "absolute",
         left: "50%",
         bottom: "50%",
-        marginLeft: `-${txtW/2}px`,
+        marginLeft: `-${txtW / 2}px`,
         transform: `translateY(${translatePositionY}px)`,
         width: `${txtW}px`,
         opacity: `${translateOpacity}`,
@@ -110,57 +104,68 @@ const Txt = () => {
       }}
     >
       <span> Votre Texte </span>
-
     </div>
-   
   );
 };
 
 const Txt2 = () => {
   const frame = useCurrentFrame();
-  
+
   const myTxt = "votre test";
 
-
-
   const splitText = () => {
-    const txtSplit = myTxt.split("").map((char,index) => {
-      const translatePositionY = interpolate(frame, [0+index,20+index], [0, 200], {
-        easing: Easing.bezier(0.17, 0.17, 0.66, 1),
-        extrapolateRight: "clamp",
-        extrapolateLeft: "clamp",
-      });
-      return <span   
-        key={index}
-        style={{
-        color: "red",
-        fontFamily: "sans-serif",
-        fontWeight: "medium",
-        fontSize: "30px",
-        position: "absolute",
+    const txtSplit = myTxt.split("").map((char, index) => {
+      const duration = 30; // frames
+      const textLength = myTxt.split("").length * (duration / 4);
+      const delay = (index ?? 0) * (duration / textLength); // no delay for the first frame
+      const start = 0 + (index + delay); // start at frame 0 + delay by index
 
-        transform:`translateX(${translatePositionY}px)`,
-  
-        }}>{char}</span>
-    }
-  )
-  return <span> {txtSplit }</span>
-  }
+      const translatePositionY = interpolate(
+        frame,
+        [start, duration <= start ? start + 1 : duration],
+        [0, 1],
+        {
+          easing: Easing.bezier(0.17, 0.17, 0.66, 1),
+          extrapolateRight: "clamp",
+          extrapolateLeft: "clamp",
+        }
+      );
 
+      return (
+        <span
+          key={index}
+          style={{
+            color: "red",
+            textAlign: "center",
+            display: "inline-block",
+            fontFamily: "sans-serif",
+            fontWeight: "medium",
+            fontSize: "50px",
+            transform: `scale(${translatePositionY})`,
+          }}
+        >
+          {char}
+        </span>
+      );
+    });
 
+    return txtSplit;
+  };
 
   return (
-    <div style={{
-      position: "absolute",
-      left: "50%",
-      top: "50%",
-    }}>
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        backgroundColor: "rgba(0, 0, 0, .8)",
+        padding: "5px 20px",
+      }}
+    >
       {splitText()}
-
     </div>
-   
   );
-}
+};
 
 const Circle2 = () => {
   const frame = useCurrentFrame();
@@ -171,12 +176,11 @@ const Circle2 = () => {
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
-  const positionXValue = interpolate(frame, [0, 20], [150,  0], {
+  const positionXValue = interpolate(frame, [0, 20], [150, 0], {
     easing: Easing.bezier(0.17, 0.17, 0.66, 1),
     extrapolateRight: "clamp",
     extrapolateLeft: "clamp",
   });
-  
 
   return (
     <div
@@ -193,22 +197,22 @@ const Circle2 = () => {
         borderRadius: 1500,
         backgroundColor: "black",
       }}
-    >
-    </div>
+    ></div>
   );
 };
-
 
 export const CompTest = () => {
   return (
     <AbsoluteFill>
-      <Sequence><Circle/></Sequence>
-      <Sequence><Txt2/></Sequence>
+      <Sequence>
+        <Circle />
+      </Sequence>
+      <Sequence>
+        <Txt2 />
+      </Sequence>
 
       <Img src={staticFile("shopping_1920_1080.png")} />
-      <Txt/>
-
+      <Txt />
     </AbsoluteFill>
-    
   );
 };
