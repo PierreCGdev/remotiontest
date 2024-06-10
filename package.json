@@ -11,7 +11,9 @@
     "remotion:render": "npx remotion render src/remotion/index.ts Demo out.mp4"
   },
   "dependencies": {
+    "@remotion/animation-utils": "^4.0.170",
     "@remotion/cli": "4.0.165",
+    "@remotion/layout-utils": "^4.0.171",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remotion": "4.0.165"
