@@ -5,7 +5,8 @@ import { MyComposition } from "./Composition";
 
 import { CompTest } from "./pierretest";
 
-import { brouillon } from "./brouillon";
+import { grunge } from "./grunge";
+
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ export const RemotionRoot: React.FC = () => {
       />
                   <Composition
         id={"Demo3"}
-        component={CompTest}
+        component={grunge}
         durationInFrames={60}
         fps={30}
         width={1280}

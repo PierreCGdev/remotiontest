@@ -10,12 +10,13 @@ import {
   Sequence,
 } from "remotion";
 
-import { measureText } from "@remotion/layout-utils";
+import { Dimensions, measureText } from "@remotion/layout-utils";
 
-const text = "abcdgfgdgdgdfe"; //souci espace
+const text = "Votre texte"; //souci espace
+
 const fontFamily = "Arial";
 const fontWeight = "700";
-const fontSize = "50px";
+const fontSize = "150px";
 const letterSpacing = "0px";
 
 const txtSize = measureText({
@@ -26,9 +27,22 @@ const txtSize = measureText({
   letterSpacing,
 });
 
+const spaceSize = () => {
+  const text = " "; 
+  return measureText({
+    text,
+    fontFamily,
+    fontWeight,
+    fontSize,
+    letterSpacing,
+  });
+
+}
+
 const color1 = "black";
 const color2 = "white";
 const color3 = "red";
+
 
 
 const Circle = () => {
@@ -126,11 +140,68 @@ const Circle2 = () => {
   );
 };
 
+const refdelay = () => {
+  const frame = useCurrentFrame();
+  const myTxt = "votre test";
+
+  const splitText = () => {
+    const txtSplit = myTxt.split("").map((char, index) => {
+      const duration = 30; // frames
+      const textLength = myTxt.split("").length * (duration / 4);
+      const delay = (index ?? 0) * (duration / textLength); // no delay for the first frame
+      const start = 0 + (index + delay); // start at frame 0 + delay by index
+
+      const translatePositionY = interpolate(
+        frame,
+        [start, duration <= start ? start + 1 : duration],
+        [0, 1],
+        {
+          easing: Easing.bezier(0.17, 0.17, 0.66, 1),
+          extrapolateRight: "clamp",
+          extrapolateLeft: "clamp",
+        }
+      );
+
+      return (
+        <span
+          key={index}
+          style={{
+            color: "red",
+            textAlign: "center",
+            display: "inline-block",
+            fontFamily: "sans-serif",
+            fontWeight: "medium",
+            fontSize: "50px",
+            transform: `scale(${translatePositionY})`,
+          }}
+        >
+          {char}
+        </span>
+      );
+    });
+
+    return txtSplit;
+  };
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        backgroundColor: "rgba(0, 0, 0, .8)",
+        padding: "5px 20px",
+      }}
+    >
+      {splitText()}
+
+    </div>
+
+  );
+};
 
 const Txt3 = () => {
   const frame = useCurrentFrame();
-
-  
 
   const splitText = () => {
 
@@ -211,6 +282,7 @@ const Txt3 = () => {
             fontSize: `${fontSize}`,
         //    opacity: `${translateOpacity}`,
             transform: `translatey(${(translatePositionY2)}px) rotate(${translateRotate}deg)` ,
+            marginLeft: char.trim().length === 0 ? spaceSize().width : 0,
           }}
         >
           {char}
@@ -241,7 +313,7 @@ const Txt3 = () => {
 
 
 const Border2 = () => {
-  const  marge = 50;
+  const  marge = 150;
   const raduisCircle = 1600;
   const frame = useCurrentFrame();
 
