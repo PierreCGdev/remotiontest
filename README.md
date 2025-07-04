@@ -6,13 +6,6 @@ Ce projet représente mes premiers tests et expérimentations avec React et Remo
 
 Ce repository contient divers composants et tests que j'ai créés lors de mon apprentissage de React et Remotion. Le code n'est pas refactorisé et reflète mon niveau de compréhension à cette période.
 
-## Structure du projet
-
-Le projet utilise Vite comme bundler avec les plugins officiels React :
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) utilise [Babel](https://babeljs.io/) pour le Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/plugin-react-swc) utilise [SWC](https://swc.rs/) pour le Fast Refresh
-
 ## Commandes pour lancer le projet
 
 ### Installation des dépendances
